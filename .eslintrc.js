@@ -1,4 +1,8 @@
 module.exports = {
+    globals: {
+        Vue: true,
+        axios: true
+    },
     env: {
         node: true
     },
@@ -18,7 +22,19 @@ module.exports = {
         'max-len': ['off', {
             code: 100,
             ignoreUrls: true
-        }]
+        }],
+        'import/prefer-default-export': 'off',
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                vue: 'never',
+                js: 'never',
+                jsx: 'never',
+                ts: 'never',
+                tsx: 'never'
+            }
+        ]
     },
     settings: {
         'import/resolver': {

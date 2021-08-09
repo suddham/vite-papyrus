@@ -36,6 +36,7 @@
 <script>
 import BackHomeButton from '@/components/BackHomeButton.vue';
 // import { initDuoLogIn } from '@/utils/api';
+import EventService from '@/services/EventService';
 
 export default {
     components: {
@@ -44,10 +45,23 @@ export default {
     data() {
         return {
             users: null,
-            duo: null
+            duo: null,
+            event: null
         };
     },
+    created() {
+        this.getEventData(); // NEW - call getEventData() when the instance is created
+    },
     methods: {
+        async getEventData() {
+        // Use the eventService to call the getEventSingle() method
+            EventService.getEventSingle(this.$route.params.id)
+                .then(
+                    ((event) => {
+                        this.$set(this, 'event', event);
+                    })
+                );
+        },
         async login() {
             // this.duo = await initDuoLogIn();
         }
